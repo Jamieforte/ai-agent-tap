@@ -8,13 +8,7 @@ st.set_page_config(page_title="AI Facade Design Agent", layout="wide")
 st.title("AI Façade Design Agent")
 
 # Sidebar (공통 옵션)
-with st.sidebar:
-    st.header("Global")
-    provider_name = st.selectbox("Image Provider", get_provider_names(), index=0)
-    target_wwr = st.slider("목표 유리율(%)", 25, 70, 50)
-    orientation = st.selectbox("향", ["남", "서", "동", "북", "복합"], index=0)
-    budget = st.select_slider("예산", options=["저", "중", "고"], value="중")
-    st.caption("이미지 제공자(API 키는 환경변수). DXF 사용 시 ezdxf 설치.")
+
 
 # 세션 상태 준비
 if "brief" not in st.session_state:
