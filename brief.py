@@ -4,7 +4,7 @@ class BriefState(BaseModel):
     location: str | None = "경기 용인시 기흥구 신수로 567"
     usage: str | None = "업무시설"
     style: str | None = "BOSCH_brand_identity, 흐름, 빛, 친환경"
-    materials: str | None = None
+    materials: str | None = "루버,식물,lighting"
     site_notes: str | None = "경부고속도로측면"
     constraints: str | None = None
 
