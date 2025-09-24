@@ -1,4 +1,4 @@
-# app.py — 탭 모듈들을 불러와 렌더링
+# app.py — 사이드바 제거 버전 (상단 얇은 전역설정 + 탭 렌더)
 import streamlit as st
 from brief import BriefState
 from tabs import site, massing, plan, facade, street, docs, images
@@ -7,11 +7,28 @@ from image_pipeline import get_provider_names
 st.set_page_config(page_title="AI Facade Design Agent", layout="wide")
 st.title("AI Design Agent")
 
-provider_name = "OpenAI (stub)"
-target_wwr = 50
-orientation = "남"
-budget = "중"
+# 세션 상태 준비
+if "brief" not in st.session_state:
+    st.session_state.brief = BriefState()
 
+# ▶ 사이드바 대신 상단 전역 설정(접기 가능)
+with st.expander("전역 설정", expanded=False):
+    c1, c2, c3, c4 = st.columns([1,1,1,1])
+    with c1:
+        provider_name = st.selectbox("Image Provider", get_provider_names(), index=0, key="prov")
+    with c2:
+        target_wwr = st.slider("목표 유리율(%)", 25, 70, 50, key="wwr")
+    with c3:
+        orientation = st.selectbox("향", ["남", "서", "동", "북", "복합"], index=0, key="ori")
+    with c4:
+        budget = st.select_slider("예산", options=["저", "중", "고"], value="중", key="budget")
+    st.caption("이미지 제공자(API 키는 환경변수). DXF 사용 시 ezdxf 설치.")
+
+# 혹시 사용자가 expander를 펼치지 않아도 기본값 보장
+provider_name = st.session_state.get("prov", get_provider_names()[0])
+target_wwr   = st.session_state.get("wwr", 50)
+orientation  = st.session_state.get("ori", "남")
+budget       = st.session_state.get("budget", "중")
 
 # 탭 구성
 T_site, T_mass, T_plan, T_facade, T_street, T_docs, T_images = st.tabs(
