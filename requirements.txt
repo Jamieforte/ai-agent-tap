@@ -1,0 +1,4 @@
+streamlit
+pydantic
+pillow
+# ezdxf  # DXF 입출력 사용 시 활성화
