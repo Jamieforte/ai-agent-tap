@@ -1,11 +1,11 @@
 from pydantic import BaseModel
 
 class BriefState(BaseModel):
-    location: str | None = None
-    usage: str | None = None
-    style: str | None = None
+    location: str | None = "경기 용인시 기흥구 신수로 567"
+    usage: str | None = "업무시설"
+    style: str | None = "BOSCH_brand_identity, 흐름, 빛, 친환경"
     materials: str | None = None
-    site_notes: str | None = None
+    site_notes: str | None = "경부고속도로측면"
     constraints: str | None = None
 
 def build_prompt_from_brief(brief: 'BriefState', orientation: str, target_wwr: float, budget: str) -> str:
