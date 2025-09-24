@@ -5,14 +5,13 @@ from tabs import site, massing, plan, facade, street, docs, images
 from image_pipeline import get_provider_names
 
 st.set_page_config(page_title="AI Facade Design Agent", layout="wide")
-st.title("AI Façade Design Agent")
+st.title("AI Design Agent")
 
-# Sidebar (공통 옵션)
+provider_name = "OpenAI (stub)"
+target_wwr = 50
+orientation = "남"
+budget = "중"
 
-
-# 세션 상태 준비
-if "brief" not in st.session_state:
-    st.session_state.brief = BriefState()
 
 # 탭 구성
 T_site, T_mass, T_plan, T_facade, T_street, T_docs, T_images = st.tabs(
