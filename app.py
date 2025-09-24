@@ -4,7 +4,7 @@ from brief import BriefState
 from tabs import site, massing, plan, facade, street, docs, images
 
 st.set_page_config(page_title="AI Facade Design Agent", layout="wide")
-st.title("AI Façade Design Agent")
+st.title("AI Design Agent")
 
 # 세션 상태 준비
 if "brief" not in st.session_state:
